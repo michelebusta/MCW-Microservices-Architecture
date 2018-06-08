@@ -114,7 +114,7 @@ The following figures are intended to help you keep track of all the technologie
 
     c.  Azure Development workload enabled in Visual Studio 2017 (enabled by default on the VM)
 
-    d.  Service Fabric SDK 2.7 or later for Visual Studio 2017
+    d.  Service Fabric SDK 3.1 or later for Visual Studio 2017
 
     e.  Google Chrome browser (Swagger commands do not work in IE)
 
@@ -132,7 +132,7 @@ Because this is a "born in Azure" solution, it depends on many Azure resources. 
 
 ### Task 1: Download and open the ContosoEventsPoC starter solution
 
-1.  On your Lab VM, download the starter project from <http://bit.ly/2eQprpa>. (Note: the URL is case sensitive, so you may need to copy and paste it into your browser's address bar.)
+1.  On your Lab VM, download the starter project from <http://bit.ly/2JCWsCV>. (Note: the URL is case sensitive, so you may need to copy and paste it into your browser's address bar.)
 
 2.  Unzip the contents to the folder C:\\handsonlab.
 
