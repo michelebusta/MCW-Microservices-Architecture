@@ -14,6 +14,8 @@ Attendees will learn how to:
 
 -   Provide query flexibility with Cosmos DB
 
+## Target Audience
+Application Developer
 
 ## Whiteboard Design Session
 TBD
