@@ -13,7 +13,7 @@
 
     -   Azure Development workload enabled in Visual Studio 2017 (enabled by default on the VM)
 
-    -   Service Fabric SDK 2.7 or later for Visual Studio 2017
+    -   Service Fabric SDK 3.1 or later for Visual Studio 2017
 
     -   Google Chrome browser (Swagger commands do not work in IE)
 
@@ -42,7 +42,7 @@ In this task, you will provision the Service Fabric Cluster in Azure.
 
 -   Cluster name: Enter contosoeventssf-SUFFIX, replacing SUFFIX with your alias, initials, or another value to make the name unique (indicated by a green check in the text box).
 
--   Operating system: Leave set to WindowsServer 2016-Datacenter
+-   Operating system: Set to WindowsServer 2016-Datacenter
 
 -   User name: Enter holuser
 
@@ -84,13 +84,13 @@ In this task, you will provision the Service Fabric Cluster in Azure.
 
     -   Select OK on the Node type configuration blade.
 
-    -   Select OK on the Cluster configuration blade. 
+    -   Select OK on the Cluster configuration blade.
     
     ![The Create Service Fabric cluster blade, Cluster configuration blade, and Node type configuration blade all display with the previously defined settings.](images/Setup/image8.png "Three blades")
 
 5.  On the Security blade, you can provide security settings for your cluster. This configuration is completed up front, cannot be changed later. Set the following:
 
--   Configuration Type: select "Basic"
+-   Configuration Type: Leave "Basic" selected
 
 -   Key vault: Select to configure required settings. On the Key vault configuration blade click "Create a new vault".
 
@@ -118,15 +118,15 @@ In this task, you will provision the Service Fabric Cluster in Azure.
 
         ![Basic Configuration Type is selected on the Security blade, and Edit access policies for hands-on-lab-SUFFIX is selected. Enable access to Azure Virutal Machines for deployment is checked in the Access policies blade on the right.](images/Setup/image10.png "Security and Access policies blades")
 
-    -   Enter "hands-on-lab-sol" as the certificate name. Then click Ok on the Security configuration blade.
+    -   Enter "hands-on-lab-SUFFIX" as the certificate name. Then click OK on the Security configuration blade.
 
-6.  On the Summary blade, review the summary, and select Create to begin provisioning the new cluster. 
+6.  On the Summary blade, review the summary, and select Create to begin provisioning the new cluster.
 
     ![The Summary blade displays with the message that Validation has passed.](images/Setup/image11.png "Summary blade")
 
 7.  It can take up to 30 minutes or more to provision your Service Fabric Cluster. You can move on to the next task while you wait.
 
-**Note**: If you experience errors related to lack of available cores, you may have to delete some other compute resources, or request additional cores be added to your subscription, and then try this again.
+**Note**: If you experience errors related to lack of available cores, you may have to delete some other compute resources, or request additional cores to be added to your subscription, and then try this again.
 
 #### Task 2: Provision a lab virtual machine (VM)
 
@@ -134,7 +134,7 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
 1.  Launch a web browser and navigate to the [Azure portal](https://portal.azure.com/).
 
-2.  Select +New, then type "Visual Studio" into the search bar. Select Visual Studio Community 2017 (latest release) on Windows Server 2016 (x64) from the results. 
+2.  Select +New, then type "Visual Studio" into the search bar. Select Visual Studio Community 2017 (latest release) on Windows Server 2016 (x64) from the results.
 
     ![In the left pane of the Azure portal, New is circled. In the Marketplace blade, Everything is selected. In the Everything blade, the search field contains Visual Studio. Under Results, Visual Studio Community 2017 on Windows Server 2016 (x64) is circled.](images/Setup/image12.png "Azure portal")
 
@@ -146,13 +146,13 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
     -   Name: Enter LabVM
 
-    -   VM disk type: Select SSD
+    -   VM disk type: Leave SSD selected
 
     -   User name: Enter holuser
 
     -   Password: Enter Password.1!!
 
-    -   Subscription: Select the subscription group you are using for this lab
+    -   Subscription: Select the subscription you are using for this lab
 
     -   Resource group: Select Use existing, and select the hands-on-labs resource group created previously.
 
@@ -162,7 +162,7 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
         ![The Basics blade displays with the fields set to the previously stated settings.](images/Setup/image14.png "Basics blade")
 
-5.  On the Choose a size blade, ensure the Supported disk type is set to SSD, and select View all. This machine won't be doing much heavy lifting, so selecting D2S\_V3 Standard is a good baseline option. 
+5.  On the Choose a size blade, ensure the Disk type is set to SSD. This machine won't be doing much heavy lifting, so selecting D2S\_V3 Standard is a good baseline option.
 
     ![On the Choose a size blade, the Supported disk type, SSD, is circled. The D2S\_V3 Standard option is circled, as is the View all button.](images/Setup/image15.png "Choose a size blade")
 
@@ -170,7 +170,7 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
 7.  Accept all the default values on the Settings blade and select OK.
 
-8.  Select Create on the Create blade to provision the virtual machine. 
+8.  Select Create on the Create blade to provision the virtual machine.
 
     ![The Create blade displays with the Standard D2s v3 offer details.](images/Setup/image16.png "Create blade")
 
@@ -180,23 +180,23 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
 In this step, you will open an RDP connection to your Lab VM and disable Internet Explorer Enhanced Security Configuration.
 
-1.  Connect to the Lab VM. (If you are already connected to your Lab VM, skip to Step 9.)
+1.  Connect to the Lab VM. (If you are already connected to your Lab VM, skip to Step 9)
 
 2.  From the left side menu in the Azure portal, select Resource groups, then enter your resource group name into the filter box, and select it from the list. 
 
     ![In the Azure Portal, Resource groups pane, hands-on is typed in the search field, and under Name, hands-on-labs is circled.](images/Setup/image17.png "Azure Portal, Resource groups pane")
 
-3.  Next, select your lab virtual machine, LabVM, from the list. 
+3.  Next, select your lab virtual machine, LabVM, from the list.
 
     ![In the Name list, the LabVM Virtual Machine is circled.](images/Setup/image18.png "Name list")
 
-4.  On your Lab VM blade, select Connect from the top menu. 
+4.  On your Lab VM blade, select Connect from the top menu.
 
     ![The Connect button is circled on the lab VM blade top menu.](images/Setup/image19.png "Lab VM blade top menu")
 
 5.  Download and open the RDP file.
 
-6.  Select Connect on the Remote Desktop Connection dialog. 
+6.  Select Connect on the Remote Desktop Connection dialog.
 
     ![In the Remote Desktop Connection Dialog Box, the Connect button is circled.](images/Setup/image20.png "Remote Desktop Connection Dialog Box")
 
@@ -206,23 +206,23 @@ In this step, you will open an RDP connection to your Lab VM and disable Interne
 
     b.  Password: Password.1!!
 
-        ![The Windows Security Credentials page displays](images/Setup/image21.png "Windows Security Credentials page")
+    ![The Windows Security Credentials page displays](images/Setup/image21.png "Windows Security Credentials page")
 
-8.  Select Yes to connect, if prompted that the identity of the remote computer cannot be verified. 
+8.  Select Yes to connect, if prompted that the identity of the remote computer cannot be verified.
 
     ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](images/Setup/image22.png "Remote Desktop Connection dialog box")
 
-9.  Once logged in, launch the Server Manager. This should start automatically, but you can access it via the Start menu if it does not start. 
+9.  Once logged in, launch the Server Manager. This should start automatically, but you can access it via the Start menu if it does not start.
 
     ![The Server Manager tile is circled in the Start Menu.](images/Setup/image23.png "Start Menu")
 
-10. Select Local Server, the select On next to IE Enhanced Security Configuration. 
+10. Select Local Server, then select On (might also display Off) next to IE Enhanced Security Configuration.
 
     ![In Server manager, in the left pane, Local Server is selected. In the right, Properties pane, IE Enhanced Security Configuration is circled, and a callout arrow points to On.](images/Setup/image24.png "Server manager")
 
-11. In the Internet Explorer Enhanced Security Configuration dialog, select Off under Administrators, then select OK. 
+11. In the Internet Explorer Enhanced Security Configuration dialog, select Off under Administrators and under Users, then select OK.
 
-    ![In the the Internet Explorer Enhanced Security Configuration dialog box, under Administrators, the Off button is selected and circled. ](images/Setup/image25.png "Internet Explorer Enhanced Security Configuration dialog box")
+    ![In the the Internet Explorer Enhanced Security Configuration dialog box, under Administrators and under Users, the Off button is selected and circled. ](images/Setup/image25.png "Internet Explorer Enhanced Security Configuration dialog box")
 
 12. Close the Server Manager.
 
@@ -230,19 +230,19 @@ In this step, you will open an RDP connection to your Lab VM and disable Interne
 
 In this task, you will install the Google Chrome browser on your Lab VM.
 
-1.  On your Lab VM, open a web browser, and navigate to <https://www.google.com/chrome/browser/desktop/index.html>, and select Download Chrome. 
+1.  On your Lab VM, open a web browser, and navigate to <https://www.google.com/chrome/browser/desktop/index.html>, and select Download Chrome.
 
     ![Screenshot of the Download Chrome button.](images/Setup/image26.png "Download Chrome button")
 
-2.  Select Accept and Install on the terms of service screen. 
+2.  Select Accept and Install on the terms of service screen.
 
     ![The Download Chrome for Windows window displays.](images/Setup/image27.png "Download Chrome for Windows ")
 
-3.  Select Run on the Application Run -- Security Warning dialog. 
+3.  Select Run on the Application Run -- Security Warning dialog.
 
     ![The Run button is circled in the Application Run -- Security Warning dialog box.](images/Setup/image28.png "Application Run ??? Security Warning dialog box")
 
-4.  Select Run again, on the Open File -- Security Warning dialog. 
+4.  Select Run again, on the Open File -- Security Warning dialog.
 
     ![In the Open File -- Security Warning dialog box, a message asks if you want to run the file. At the bottom, the Run button is circled.](images/Setup/image29.png "Open File ??? Security Warning dialog box")
 
@@ -254,19 +254,19 @@ In this task, you will install the latest Service Fabric SDK for Visual Studio 2
 
 1.  On your Lab VM, open a browser, and navigate to <https://docs.microsoft.com/azure/service-fabric/service-fabric-get-started>.
 
-2.  Scroll down on the page to the Install the SDK and tools section and select Install the Microsoft Azure Service Fabric SDK under the To use Visual Studio 2017 heading. 
+2.  Scroll down on the page to the Install the SDK and tools section and select Install the Microsoft Azure Service Fabric SDK under the To use Visual Studio 2017 heading.
 
     ![In the Install the SDK and tools section, the link to Install the Microsoft Azure Service Fabric SDK is circled.](images/Setup/image30.png "Install the SDK and tools section")
 
 3.  Run the downloaded executable and select Install in the Web Platform Installer screen. 
 
-    ![The Web Platform Installer window displays the information for Microsoft Azure Service Fabric SDK - 2.8.232.](images/Setup/image31.png "Web Platform Installer window")
+    ![The Web Platform Installer window displays the information for Microsoft Azure Service Fabric SDK - 3.1.283.](images/Setup/image31.png "Web Platform Installer window")
 
-4.  On the Prerequisites screen, select I Accept. 
+4.  On the Prerequisites screen, select I Accept.
 
     ![The Web Platform Installer Prerequisites window lists the file name and file size to be downloaded. At the bottom, the I Accept button to download additional software and review the license is circled.](images/Setup/image32.png "Web Platform Installer Prerequisites window")
 
-5.  Select Finish when the install completes. 
+5.  Select Finish when the install completes.
 
     ![The Web Platform Installer Finish window shows that the installation was successful, and lists the products that were installed.](images/Setup/image33.png "Web Platform Installer Finish window")
 
@@ -282,11 +282,11 @@ In this task, you will validate that the ports are open and if not, fix the issu
 
 1.  In the Azure portal, navigate to the Resource Group you created previously, and where you created the cluster. If your Service Fabric cluster is still deploying, do not proceed to the next step until the deployment is completed.
 
-2.  Select the load balancer from the list of resources in the resource group. 
+2.  Select the load balancer from the list of resources in the resource group.
 
     ![In the Azure Portal Resource Group pane, in the list of resources, the LB-contosoeventssf-kb-Web load balancer is circled.](images/Setup/image34.png "Resource group list")
 
-3.  Under the Settings category in the left-hand menu, select Health Probes.
+3.  Under the Settings category in the left-hand menu, select Health probes.
 
     ![In the Settings section, Health probes is circled.](images/Setup/image35.png "Settings section")
 
@@ -294,7 +294,7 @@ In this task, you will validate that the ports are open and if not, fix the issu
 
     ![In the list of health probes, three health probes display. For AppPortProbe1, its Port (8082), and Used by value (AppPortLBRule1) are circled.](images/Setup/image36.png "Health probes list")
 
-5.  Select +Add on the Health Probes blade.
+5.  Select +Add on the Health probes blade.
 
     ![Screenshot of an Add button.](images/Setup/image37.png "Add button")
 
@@ -310,11 +310,11 @@ In this task, you will validate that the ports are open and if not, fix the issu
 
     -   Unhealthy threshold: Leave the default value
 
-    -   Select OK to create the probe. 
+    -   Select OK to create the probe.
 
         ![Fields on the Add health probe blade are set to the previously listed settings.](images/Setup/image38.png "Add health probe blade")
 
-7.  Once the Health probe is added (this can take a few minutes to update), you will create a rule associated with this probe. Under the Settings block in the left-hand menu, select Load balancing rules. 
+7.  Once the Health probe is added (this can take a few minutes to update), you will create a rule associated with this probe. Under the Settings block in the left-hand menu, select Load balancing rules.
 
     ![In the Settings section, Load balancing rules are circled.](images/Setup/image39.png "Settings section")
 
@@ -338,11 +338,10 @@ In this task, you will validate that the ports are open and if not, fix the issu
 
     -   Backend pool: Leave the default value selected
 
-    -   Health Probe: Select the WebApiPortProbe you created previously
+    -   Health probe: Select the WebApiPortProbe you created previously
 
-    -   Leave the default values for the remaining fields, and Select OK. 
-    
+    -   Leave the default values for the remaining fields, and Select OK.
+
     ![Fields on the Add load balancing rule blade are set to the previously defined settings.](images/Setup/image40.png "Add load balancing rule blade")
-
 
 10. If you get an error notification such as "Failure to create probe", ignore this, but just go check that the probe indeed exists. It should. You now have a cluster ready to deploy to and expose 8082 as the Web API endpoint / port.
