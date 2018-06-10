@@ -32,7 +32,7 @@ IMPORTANT: Most Azure resources require unique names. Throughout these steps, yo
 
 In this task, you will provision the Service Fabric Cluster in Azure.
 
-1.  In the Azure portal, select +New, then type "Service Fabric" into the Search the Marketplace box. Select Service Fabric Cluster from the results. 
+1.  In the Azure portal, select +New, then type "Service Fabric" into the Search the Marketplace box. Select Service Fabric Cluster from the results.
 
     ![In the Azure Portal, in the left pane, New is selected. In the Marketplace pane, Everything is selected. In the Everything pane, Service Fabric is typed in the search field, and under Results, Service Fabric Cluster is circled.](images/Setup/image5.png "Azure Portal")
 
@@ -158,7 +158,7 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
     -   Location: Select the region you are using for resources in this lab.
 
-    -   Select OK to move to the next step. 
+    -   Select OK to move to the next step.
 
         ![The Basics blade displays with the fields set to the previously stated settings.](images/Setup/image14.png "Basics blade")
 
@@ -274,7 +274,57 @@ In this task, you will install the latest Service Fabric SDK for Visual Studio 2
 
 7.  Restart the VM to complete the installation and start the local Service Fabric cluster service.
 
-#### Task 6: Validate Service Fabric ports
+#### Task 6: Setup Service Fabric certificate
+
+When you create a new Service Fabric Cluster using the portal, a secure cluster is deployed. In order to later on be able to make use of it, a certificate setup is required.
+
+In this task, you will download the required certificate and install it on your Lab VM.
+
+1.  In the Azure portal, navigate to the Resource Group you created previously and where you created the Key vault that supports the cluster.
+
+2.  Select the key vault from the list of resources in the resource group.
+
+    ![In the Azure Portal Resource Group pane, in the list of resources, the hands-on-lab-SUFFIX key vault is circled.](images/Setup/image34.png "Resource group list")
+
+3.  Under the Settings category in the left-hand menu, select Certificates and then select the existing certificate.
+
+    ![In the Settings section, Certificates and the existing certificate are circled.](images/Setup/image35.png "Certificates")
+
+4.  Select the Current Version of the existing certificate.
+
+    ![In the certificate list, the existing certificate is circled.](images/Setup/image36.png "Existing certificate")
+
+5.  In the certificate information blade, select Download in PFX/PEM format and save the certificate.
+
+    ![In the certificate information blade, download the private certificate.](images/Setup/image37.png "Download certificate")
+
+6.  Copy the downloaded certificate into the Lab VM.
+
+7.  On the Lab VM, double-click the copied certificate to initiate it's installation. Select Local Machine as the Store Location and select Next.
+
+    ![Double-click the certificate to install, select Local Machine and select Next.](images/Setup/image38.png "Certificate Import Wizard")
+
+8.  Select Next.
+
+    ![Select Next.](images/Setup/image39.png "File to import")
+
+9.  Select Next.
+
+    ![Select Next.](images/Setup/image40.png "Private key protection")
+
+10. Select Next.
+
+    ![In the Certificate Store, select Next.](images/Setup/image41.png "Certificate Store")
+
+11. Select Finish.
+
+    ![In the review panel, select next.](images/Setup/image42.png "Review panel")
+
+12. When the import finishes successfully, select OK.
+
+    ![Import success.](images/Setup/image43.png "Import successful")
+
+#### Task 7: Validate Service Fabric ports
 
 Occasionally, when you create a new Service Fabric Cluster using the portal, the ports that you requested are not created. This will become evident when you try to deploy and run the Web App, because the required ports will not be accessible through the cluster.
 
@@ -284,19 +334,19 @@ In this task, you will validate that the ports are open and if not, fix the issu
 
 2.  Select the load balancer from the list of resources in the resource group.
 
-    ![In the Azure Portal Resource Group pane, in the list of resources, the LB-contosoeventssf-kb-Web load balancer is circled.](images/Setup/image34.png "Resource group list")
+    ![In the Azure Portal Resource Group pane, in the list of resources, the LB-contosoeventssf-SUFFIX-Web load balancer is circled.](images/Setup/image44.png "Resource group list")
 
 3.  Under the Settings category in the left-hand menu, select Health probes.
 
-    ![In the Settings section, Health probes is circled.](images/Setup/image35.png "Settings section")
+    ![In the Settings section, Health probes is circled.](images/Setup/image45.png "Settings section")
 
 4.  Verify if a probe exists for port 8082, and that it is "Used By" a load balancing rule. If both of these are true, you can skip the remainder of this task. Otherwise, proceed to the next step to create the probe and load-balancing rule.
 
-    ![In the list of health probes, three health probes display. For AppPortProbe1, its Port (8082), and Used by value (AppPortLBRule1) are circled.](images/Setup/image36.png "Health probes list")
+    ![In the list of health probes, three health probes display. For AppPortProbe1, its Port (8082), and Used by value (AppPortLBRule1) are circled.](images/Setup/image46.png "Health probes list")
 
 5.  Select +Add on the Health probes blade.
 
-    ![Screenshot of an Add button.](images/Setup/image37.png "Add button")
+    ![Screenshot of an Add button.](images/Setup/image47.png "Add button")
 
 6.  On the Add health probe blade, enter the following:
 
@@ -312,15 +362,15 @@ In this task, you will validate that the ports are open and if not, fix the issu
 
     -   Select OK to create the probe.
 
-        ![Fields on the Add health probe blade are set to the previously listed settings.](images/Setup/image38.png "Add health probe blade")
+        ![Fields on the Add health probe blade are set to the previously listed settings.](images/Setup/image48.png "Add health probe blade")
 
 7.  Once the Health probe is added (this can take a few minutes to update), you will create a rule associated with this probe. Under the Settings block in the left-hand menu, select Load balancing rules.
 
-    ![In the Settings section, Load balancing rules are circled.](images/Setup/image39.png "Settings section")
+    ![In the Settings section, Load balancing rules are circled.](images/Setup/image49.png "Settings section")
 
 8.  Select +Add on the Load balancing rules blade.
 
-    ![Screenshot of an Add button.](images/Setup/image37.png "Add button")
+    ![Screenshot of an Add button.](images/Setup/image47.png "Add button")
 
 9.  On the Add Load balancing rules blade, enter the following:
 
@@ -342,6 +392,6 @@ In this task, you will validate that the ports are open and if not, fix the issu
 
     -   Leave the default values for the remaining fields, and Select OK.
 
-    ![Fields on the Add load balancing rule blade are set to the previously defined settings.](images/Setup/image40.png "Add load balancing rule blade")
+    ![Fields on the Add load balancing rule blade are set to the previously defined settings.](images/Setup/image50.png "Add load balancing rule blade")
 
 10. If you get an error notification such as "Failure to create probe", ignore this, but just go check that the probe indeed exists. It should. You now have a cluster ready to deploy to and expose 8082 as the Web API endpoint / port.
