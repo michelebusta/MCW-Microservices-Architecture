@@ -324,6 +324,30 @@ In this task, you will download the required certificate and install it on your 
 
     ![Import success.](images/Setup/image43.png "Import successful")
 
+13. On the Lab VM, double-click the copied certificate once again to initiate it's installation. Select Current User as the Store Location and select Next.
+
+    ![Double-click the certificate to install, select Local Machine and select Next.](images/Setup/image44.png "Certificate Import Wizard")
+
+14. Select Next.
+
+    ![Select Next.](images/Setup/image39.png "File to import")
+
+15. Select Next.
+
+    ![Select Next.](images/Setup/image40.png "Private key protection")
+
+16. Select Next.
+
+    ![In the Certificate Store, select Next.](images/Setup/image41.png "Certificate Store")
+
+17. Select Finish.
+
+    ![In the review panel, select next.](images/Setup/image42.png "Review panel")
+
+18. When the import finishes successfully, select OK.
+
+    ![Import success.](images/Setup/image43.png "Import successful")
+
 #### Task 7: Validate Service Fabric ports
 
 Occasionally, when you create a new Service Fabric Cluster using the portal, the ports that you requested are not created. This will become evident when you try to deploy and run the Web App, because the required ports will not be accessible through the cluster.
@@ -334,19 +358,19 @@ In this task, you will validate that the ports are open and if not, fix the issu
 
 2.  Select the load balancer from the list of resources in the resource group.
 
-    ![In the Azure Portal Resource Group pane, in the list of resources, the LB-contosoeventssf-SUFFIX-Web load balancer is circled.](images/Setup/image44.png "Resource group list")
+    ![In the Azure Portal Resource Group pane, in the list of resources, the LB-contosoeventssf-SUFFIX-Web load balancer is circled.](images/Setup/image45.png "Resource group list")
 
 3.  Under the Settings category in the left-hand menu, select Health probes.
 
-    ![In the Settings section, Health probes is circled.](images/Setup/image45.png "Settings section")
+    ![In the Settings section, Health probes is circled.](images/Setup/image46.png "Settings section")
 
 4.  Verify if a probe exists for port 8082, and that it is "Used By" a load balancing rule. If both of these are true, you can skip the remainder of this task. Otherwise, proceed to the next step to create the probe and load-balancing rule.
 
-    ![In the list of health probes, three health probes display. For AppPortProbe1, its Port (8082), and Used by value (AppPortLBRule1) are circled.](images/Setup/image46.png "Health probes list")
+    ![In the list of health probes, three health probes display. For AppPortProbe1, its Port (8082), and Used by value (AppPortLBRule1) are circled.](images/Setup/image47.png "Health probes list")
 
 5.  Select +Add on the Health probes blade.
 
-    ![Screenshot of an Add button.](images/Setup/image47.png "Add button")
+    ![Screenshot of an Add button.](images/Setup/image48.png "Add button")
 
 6.  On the Add health probe blade, enter the following:
 
@@ -362,15 +386,15 @@ In this task, you will validate that the ports are open and if not, fix the issu
 
     -   Select OK to create the probe.
 
-        ![Fields on the Add health probe blade are set to the previously listed settings.](images/Setup/image48.png "Add health probe blade")
+        ![Fields on the Add health probe blade are set to the previously listed settings.](images/Setup/image49.png "Add health probe blade")
 
 7.  Once the Health probe is added (this can take a few minutes to update), you will create a rule associated with this probe. Under the Settings block in the left-hand menu, select Load balancing rules.
 
-    ![In the Settings section, Load balancing rules are circled.](images/Setup/image49.png "Settings section")
+    ![In the Settings section, Load balancing rules are circled.](images/Setup/image50.png "Settings section")
 
 8.  Select +Add on the Load balancing rules blade.
 
-    ![Screenshot of an Add button.](images/Setup/image47.png "Add button")
+    ![Screenshot of an Add button.](images/Setup/image48.png "Add button")
 
 9.  On the Add Load balancing rules blade, enter the following:
 
@@ -392,6 +416,6 @@ In this task, you will validate that the ports are open and if not, fix the issu
 
     -   Leave the default values for the remaining fields, and Select OK.
 
-    ![Fields on the Add load balancing rule blade are set to the previously defined settings.](images/Setup/image50.png "Add load balancing rule blade")
+    ![Fields on the Add load balancing rule blade are set to the previously defined settings.](images/Setup/image51.png "Add load balancing rule blade")
 
 10. If you get an error notification such as "Failure to create probe", ignore this, but just go check that the probe indeed exists. It should. You now have a cluster ready to deploy to and expose 8082 as the Web API endpoint / port.
