@@ -147,7 +147,7 @@ Because this is a "born in Azure" solution, it depends on many Azure resources. 
 
 ### Task 1: Download and open the ContosoEventsPoC starter solution
 
-1.  On your Lab VM, download the starter project from <http://bit.ly/2JCWsCV>. (Note: the URL is case sensitive, so you may need to copy and paste it into your browser's address bar.)
+1.  On your Lab VM, download the starter project from <http://bit.ly/2sQNZCg>. (Note: the URL is case sensitive, so you may need to copy and paste it into your browser's address bar.)
 
 2.  Unzip the contents to the folder C:\\handsonlab.
 
