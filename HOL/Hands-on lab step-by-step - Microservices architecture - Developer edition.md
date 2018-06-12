@@ -713,7 +713,7 @@ Test configurations:
 
     ![In the Swagger endpoint window, Orders is circled. Below Orders, /api/orders method is circled. While the other methods have Get buttons next to them, the /api/orders method has a Post button next to it.](images/Labs/image93.png "Swagger Endpoint Window")
 
-4.  POST an order to the Contoso Events application. Copy this order request JSON below into the order value box, and select Try it out.
+4.  POST an order to the Contoso Events application. Copy the order request JSON below into the order value box, and select Try it out.
 
     ```
         {
@@ -973,7 +973,7 @@ In this task, you will test the ticket order processing back-end, to validate th
 
 9.  Select Execute Query.
 
-    ![In the Azure Cosmos DB account pane, in theleft column, Data Explorer is selected. In the center column, at the top, the New SQL Query button is circled. Under Collections, TicketManager is expanded, and Orders is circled. In the right column, on the Query 1 tab, in the Query 1 field, a callout points to an ID in red, and says, \"Replace with your order ID.\" in the Results pane at the bottom, the same order ID is circled. The Execute Query button is circled as well. ](images/Labs/image134.png "Azure Cosmos DB account pane")
+    ![In the Azure Cosmos DB account pane, in the left column, Data Explorer is selected. In the center column, at the top, the New SQL Query button is circled. Under Collections, TicketManager is expanded, and Orders is circled. In the right column, on the Query 1 tab, in the Query 1 field, a callout points to an ID in red, and says, \"Replace with your order ID.\" in the Results pane at the bottom, the same order ID is circled. The Execute Query button is circled as well. ](images/Labs/image134.png "Azure Cosmos DB account pane")
 
 10. If the Cosmos DB query returns the order id specified, the order has been fully processed through to the Cosmos DB.
 
