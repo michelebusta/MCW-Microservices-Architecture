@@ -1,4 +1,3 @@
-
 # Microservices Architecture setup
 
 ## Requirements
@@ -19,7 +18,6 @@
 
     -   PowerShell 3.0 or higher (v5.1 already installed on VM)
 
-
 ## Before the hands-on lab
 
 Duration: 45 minutes
@@ -28,7 +26,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 IMPORTANT: Most Azure resources require unique names. Throughout these steps, you will see the word "SUFFIX" as part of resource names. You should replace this with your Microsoft alias, initials, or other value to ensure the resource is uniquely named.
 
-#### Task 1: Provision Service Fabric Cluster
+### Task 1: Provision Service Fabric Cluster
 
 In this task, you will provision the Service Fabric Cluster in Azure.
 
@@ -68,8 +66,8 @@ In this task, you will provision the Service Fabric Cluster in Azure.
 
     -   Durability tier: Leave Bronze selected
 
-    -   Virtual machine size: Select a VM size of D1\_V2 Standard and select Select on the Choose a size blade. 
-            
+    -   Virtual machine size: Select a VM size of D1\_V2 Standard and select Select on the Choose a size blade.
+
         ![On the Cluster configuration blade, under Virtual Machine Size, D1\_V2 Standard is circled.](images/Setup/image7.png "Cluster configuration blade")
 
     -   Single node cluster: Leave unchecked
@@ -85,7 +83,7 @@ In this task, you will provision the Service Fabric Cluster in Azure.
     -   Select OK on the Node type configuration blade.
 
     -   Select OK on the Cluster configuration blade.
-    
+
     ![The Create Service Fabric cluster blade, Cluster configuration blade, and Node type configuration blade all display with the previously defined settings.](images/Setup/image8.png "Three blades")
 
 5.  On the Security blade, you can provide security settings for your cluster. This configuration is completed up front, cannot be changed later. Set the following:
@@ -128,7 +126,7 @@ In this task, you will provision the Service Fabric Cluster in Azure.
 
 **Note**: If you experience errors related to lack of available cores, you may have to delete some other compute resources, or request additional cores to be added to your subscription, and then try this again.
 
-#### Task 2: Provision a lab virtual machine (VM)
+### Task 2: Provision a lab virtual machine (VM)
 
 In this task, you will provision a virtual machine (VM) in Azure. The VM image used will have Visual Studio Community 2017 installed.
 
@@ -176,13 +174,13 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
 9.  It may take 10+ minutes for the virtual machine to complete provisioning.
 
-#### Task 3: Connect to your lab VM
+### Task 3: Connect to your lab VM
 
 In this step, you will open an RDP connection to your Lab VM and disable Internet Explorer Enhanced Security Configuration.
 
 1.  Connect to the Lab VM. (If you are already connected to your Lab VM, skip to Step 9)
 
-2.  From the left side menu in the Azure portal, select Resource groups, then enter your resource group name into the filter box, and select it from the list. 
+2.  From the left side menu in the Azure portal, select Resource groups, then enter your resource group name into the filter box, and select it from the list.
 
     ![In the Azure Portal, Resource groups pane, hands-on is typed in the search field, and under Name, hands-on-labs is circled.](images/Setup/image17.png "Azure Portal, Resource groups pane")
 
@@ -226,7 +224,7 @@ In this step, you will open an RDP connection to your Lab VM and disable Interne
 
 12. Close the Server Manager.
 
-#### Task 4: Install Chrome on LabVM
+### Task 4: Install Chrome on LabVM
 
 In this task, you will install the Google Chrome browser on your Lab VM.
 
@@ -248,7 +246,7 @@ In this task, you will install the Google Chrome browser on your Lab VM.
 
 5.  Once the Chrome installation completes, a Chrome browser window should open. For ease, you can use the instructions in that window to make Chrome your default browser.
 
-#### Task 5: Install Service Fabric SDK for Visual Studio
+### Task 5: Install Service Fabric SDK for Visual Studio
 
 In this task, you will install the latest Service Fabric SDK for Visual Studio 2017 on your Lab VM.
 
@@ -258,7 +256,7 @@ In this task, you will install the latest Service Fabric SDK for Visual Studio 2
 
     ![In the Install the SDK and tools section, the link to Install the Microsoft Azure Service Fabric SDK is circled.](images/Setup/image30.png "Install the SDK and tools section")
 
-3.  Run the downloaded executable and select Install in the Web Platform Installer screen. 
+3.  Run the downloaded executable and select Install in the Web Platform Installer screen.
 
     ![The Web Platform Installer window displays the information for Microsoft Azure Service Fabric SDK - 3.1.283.](images/Setup/image31.png "Web Platform Installer window")
 
@@ -274,7 +272,7 @@ In this task, you will install the latest Service Fabric SDK for Visual Studio 2
 
 7.  Restart the VM to complete the installation and start the local Service Fabric cluster service.
 
-#### Task 6: Setup Service Fabric certificate
+### Task 6: Setup Service Fabric certificate
 
 When you create a new Service Fabric Cluster using the portal, a secure cluster is deployed. In order to later on be able to make use of it, a certificate setup is required.
 
@@ -348,7 +346,7 @@ In this task, you will download the required certificate and install it on your 
 
     ![Import success.](images/Setup/image43.png "Import successful")
 
-#### Task 7: Validate Service Fabric ports
+### Task 7: Validate Service Fabric ports
 
 Occasionally, when you create a new Service Fabric Cluster using the portal, the ports that you requested are not created. This will become evident when you try to deploy and run the Web App, because the required ports will not be accessible through the cluster.
 
