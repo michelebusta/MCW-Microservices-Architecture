@@ -97,7 +97,9 @@ In this hands-on lab, you will construct an end-to-end POC for ticket ordering. 
 
 ## Solution architecture
 
-The following figures are intended to help you keep track of all the technologies and endpoints you are working with in this hands-on lab. The first figure is the overall architecture, indicating the Azure resources to be employed. The second figure is a more detailed picture of the key items you will want to remember about those resources as you move through the exercises.![Diagram of the preferred solution (just one of many viable options). From a high-level, Contoso Events applications will consume back-end APIs managed through API Management, authenticating users with tokens issued by Azure AD B2C. API requests will go through Azure Load Balancer, and distribute across Service Fabric nodes. Business functionality will be implemented through stateful services and actors, and Azure Functions will handle processing the queues and updating Cosmos DB.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image3.png "Preferred solution diagram")
+The following figures are intended to help you keep track of all the technologies and endpoints you are working with in this hands-on lab. The first figure is the overall architecture, indicating the Azure resources to be employed. The second figure is a more detailed picture of the key items you will want to remember about those resources as you move through the exercises.
+
+![Diagram of the preferred solution (just one of many viable options). From a high-level, Contoso Events applications will consume back-end APIs managed through API Management, authenticating users with tokens issued by Azure AD B2C. API requests will go through Azure Load Balancer, and distribute across Service Fabric nodes. Business functionality will be implemented through stateful services and actors, and Azure Functions will handle processing the queues and updating Cosmos DB.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image3.png "Preferred solution diagram")
 
 ![This illustrationlists key items to remember, which include: Profiles, Application, Queues, TicketManager DB, Functions, APIM Endpoints, Web App, Cluster Endpoints, and Local Endpoints. At this time, we are unable to capture all of the information in the illustration. Future versions of this course should address this.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image4.png "Key items to remember illustration")
 
@@ -137,17 +139,27 @@ Because this is a "born in Azure" solution, it depends on many Azure resources. 
 
 3.  Locate the solution file (C:\\handsonlab\\ContosoEventsPoC\\Src\\ContosoEventsPOC.sln), and double-click it to open it with Visual Studio 2017.
 
-4.  If prompted about how you want to open the file, select Visual Studio 2017, and select OK. ![In the How do you want to open this file dialog box, Visual Studio 2017 is selected.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image43.png "How do you want to open this file?")
+4.  If prompted about how you want to open the file, select Visual Studio 2017, and select OK.
 
-5.  Log into Visual Studio or set up an account, when prompted. ![The Welcome to Visual Studio window displays, asking you to sign in.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image44.png "Welcome to Visual Studio window")
+    ![In the How do you want to open this file dialog box, Visual Studio 2017 is selected.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image43.png "How do you want to open this file?")
 
-6.  If presented with a security warning, uncheck Ask me for every project in this solution, and select OK. ![A Security Warning displays for contosoEvents.WebApi. A message states that you should only open projects from a trustworthy source. At the bottom, the check box for Ask me for every project in this solution is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image45.png "Security Warning for contosoEvents.WebApi")
+5.  Log into Visual Studio or set up an account, when prompted.
+
+    ![The Welcome to Visual Studio window displays, asking you to sign in.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image44.png "Welcome to Visual Studio window")
+
+6.  If presented with a security warning, uncheck Ask me for every project in this solution, and select OK.
+
+    ![A Security Warning displays for contosoEvents.WebApi. A message states that you should only open projects from a trustworthy source. At the bottom, the check box for Ask me for every project in this solution is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image45.png "Security Warning for contosoEvents.WebApi")
 
 7.  If you are missing any prerequisites (listed under Requirements above), you may be prompted to install these at this point.
 
-8.  Before you attempt to compile the solution, set the configuration to x64 by selecting it from the Solution Platforms drop down in the Visual Studio toolbar. ![On the Visual Studio Toolbar, The Platforms drop-down carat is circled, and in its drop-down menu, x64 is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image46.png "Visual Studio Toolbar")
+8.  Before you attempt to compile the solution, set the configuration to x64 by selecting it from the Solution Platforms drop down in the Visual Studio toolbar.
 
-9.  Build the solution, by selecting Build from the Visual Studio menu, then selecting Build Solution. ![The Build button is circled on the Visual Studio menu. Under that, Build Solution is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image47.png "Visual Studio menu")
+    ![On the Visual Studio Toolbar, The Platforms drop-down carat is circled, and in its drop-down menu, x64 is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image46.png "Visual Studio Toolbar")
+
+9.  Build the solution, by selecting Build from the Visual Studio menu, then selecting Build Solution.
+
+    ![The Build button is circled on the Visual Studio menu. Under that, Build Solution is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image47.png "Visual Studio menu")
 
 10. You will have some compile-time errors at this point. These are expected, and will be fixed as you proceed with the hands-on lab.
 
@@ -155,7 +167,9 @@ Because this is a "born in Azure" solution, it depends on many Azure resources. 
 
 In this task, you will provision an API Management Service in the Azure portal.
 
-1.  In the Azure portal, select +New, enter "API Management" into the Search the Marketplace box, then select API management from the results. ![In the Azure Portal Everything pane, API Management is typed in the search field. Under Results, API Management is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image48.png "Azure Portal Everything pane")
+1.  In the Azure portal, select +New, enter "API Management" into the Search the Marketplace box, then select API management from the results.
+
+    ![In the Azure Portal Everything pane, API Management is typed in the search field. Under Results, API Management is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image48.png "Azure Portal Everything pane")
 
 2.  In the API Management blade, select Create.
 
@@ -175,7 +189,9 @@ In this task, you will provision an API Management Service in the Azure portal.
 
     g.  Pricing tier: Select Developer (No SLA)
 
-    h.  Select Create![On the API Management service blade, fields are set to the previously defined settings.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image49.png "API Management service blade")
+    h.  Select Create
+
+    ![On the API Management service blade, fields are set to the previously defined settings.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image49.png "API Management service blade")
 
 4.  After the API Management service is provisioned, the service will be listed in the Resource Group. This may take up to 10-15 minutes, so move to Task 3 and return later to verify.
 
@@ -183,7 +199,9 @@ In this task, you will provision an API Management Service in the Azure portal.
 
 In these steps, you will provision a Web App in a new App Service Plan.
 
-1.  Select +New in the Azure Portal, select Web, then select Web App.![In the Azure Portal, New pane, under Azure Marketplace, Web and Web App (Quckstart tutorial) are both circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image50.png "Azure Portal, New pane")
+1.  Select +New in the Azure Portal, select Web, then select Web App.
+
+    ![In the Azure Portal, New pane, under Azure Marketplace, Web and Web App (Quckstart tutorial) are both circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image50.png "Azure Portal, New pane")
 
 2.  On the Create Web App blade, enter the following:
 
@@ -205,19 +223,25 @@ In these steps, you will provision a Web App in a new App Service Plan.
 
         iv. Select OK
 
-    f.  Select Create to provision the Web App. ![On the Create Web App blade, fields are set to the previously defined settings.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image51.png "Create Web App blade")
+    f.  Select Create to provision the Web App.
+
+    ![On the Create Web App blade, fields are set to the previously defined settings.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image51.png "Create Web App blade")
 
 3.  You will receive a notification in the Azure portal when the Web App deployment completes. From this, select Go to resource.
 
     ![The Azure Portal Notification displays, indicating that deployment succeeded. In the top, right corner of the notification window, a Bell (notification) icon is circled. At the bottom of the Deployment succeeded message, the Go to resource button is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image52.png "Azure Portal Notification")
 
-4.  On the Web Apps Overview blade, you can see the URL used to access your Web App. If you select this, it will open an empty site, indicating your App Services app is up and running. ![On the Web Apps Overview blade, under URL, a quick link to the URL is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image53.png "Web Apps Overview blade")
+4.  On the Web Apps Overview blade, you can see the URL used to access your Web App. If you select this, it will open an empty site, indicating your App Services app is up and running.
+
+    ![On the Web Apps Overview blade, under URL, a quick link to the URL is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image53.png "Web Apps Overview blade")
 
 ### Task 4: Function App
 
 In this task, you will provision a Function App using a Consumption Plan. By using a Consumption Plan, you enable dynamic scaling of your Functions.
 
-1.  Select +New in the Azure Portal, and enter "Function App" in the Search the Marketplace box, then select Function App from the results. ![In the Azure Portal Everything pane, the search field is set to Function App. Under Results, Function App is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image54.png "Azure Portal Everything pane")
+1.  Select +New in the Azure Portal, and enter "Function App" in the Search the Marketplace box, then select Function App from the results.
+
+    ![In the Azure Portal Everything pane, the search field is set to Function App. Under Results, Function App is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image54.png "Azure Portal Everything pane")
 
 2.  Select Create on the Function App blade.
 
@@ -281,7 +305,9 @@ In this section, you will create a Storage account for the application to create
 
 In this section, you will provision a Cosmos DB account, a Cosmos DB Database and a Cosmos DB collection that will be used to collect ticket orders.
 
-1.  In the Azure portal, select +New, Databases, then select Azure Cosmos DB.![In the Azure Portal, New pane, in the left column, Databases is circled. In the right pane, Azure Cosmos DB (Quickstart tutorial) is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image58.png "Azure Portal, New pane")
+1.  In the Azure portal, select +New, Databases, then select Azure Cosmos DB.
+
+    ![In the Azure Portal, New pane, in the left column, Databases is circled. In the right pane, Azure Cosmos DB (Quickstart tutorial) is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image58.png "Azure Portal, New pane")
 
 2.  On the Azure Cosmos DB blade, enter the following:
 
@@ -301,11 +327,17 @@ In this section, you will provision a Cosmos DB account, a Cosmos DB Database an
 
     ![In the Azure Cosmos DB blade, fields are set to the previously defined settings.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image59.png "Azure Cosmos DB blade")
 
-3.  When the Cosmos DB account is ready, navigate to the hands-on-labs Resource Group, and select your Cosmos DB account from the list. ![In the Resource Group pane, under Name, the contosoeventsdb-SUFFIX Azure Cosmos DB account is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image60.png "Resource Group pane")
+3.  When the Cosmos DB account is ready, navigate to the hands-on-labs Resource Group, and select your Cosmos DB account from the list.
 
-4.  On the Cosmos DB account blade, under Collections in the left-hand menu, select Browse. ![In the Cosmos DB account blade, Collections section, Browse is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image61.png "Cosmos DB account blade")
+    ![In the Resource Group pane, under Name, the contosoeventsdb-SUFFIX Azure Cosmos DB account is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image60.png "Resource Group pane")
 
-5.  On the Browse blade, select +Add Collection. ![On the Browse blade menu, the Add Collections button is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image62.png "Browse blade menu")
+4.  On the Cosmos DB account blade, under Collections in the left-hand menu, select Browse.
+
+    ![In the Cosmos DB account blade, Collections section, Browse is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image61.png "Cosmos DB account blade")
+
+5.  On the Browse blade, select +Add Collection.
+
+    ![On the Browse blade menu, the Add Collections button is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image62.png "Browse blade menu")
 
 6.  On the Add Collection dialog, enter the following:
 
@@ -341,7 +373,9 @@ In this section, you will provision a Cosmos DB account, a Cosmos DB Database an
 
     ![On the Add Collection blade, fields are set to the previously defined settings.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image65.png "Add Collection blade")
 
-9.  You will be able to see that the two collections exist in the new database. ![On the New Screen, under Collections, under TicketManager, the Orders and Events collections are circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image66.png "New Screen")
+9.  You will be able to see that the two collections exist in the new database.
+
+    ![On the New Screen, under Collections, under TicketManager, the Orders and Events collections are circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image66.png "New Screen")
 
 ## Exercise 2: Implementing the Service Fabric solution
 
@@ -359,7 +393,9 @@ The design also calls for saving the state of the ticket order to a Cosmos DB co
 
 In this task, you will write code to process the cancellation of an order by interacting with the Ticket Order Actor. To cancel an order, a Ticket Order Actor instance must be retrieved, and the CancelTicket operation it provides is invoked that changes the actor's state to reflect a "canceled" status.
 
-1.  On your Lab VM, with the ContosoEventsPoC solution open in Visual Studio, use the Solution Explorer to open the TicketOrderActor.cs file, in the Service Fabric folder, under the ContosoEvents.TicketOrderActor project. ![In the Solution Explorer window, the following path is expanded: Service Fabric\\ContosoEvents.TicketOrderActor. Under ContosoEvents.TicketOrderActor, TicketOrderActor.cs is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image68.png "Solution Explorer window")
+1.  On your Lab VM, with the ContosoEventsPoC solution open in Visual Studio, use the Solution Explorer to open the TicketOrderActor.cs file, in the Service Fabric folder, under the ContosoEvents.TicketOrderActor project.
+
+    ![In the Solution Explorer window, the following path is expanded: Service Fabric\\ContosoEvents.TicketOrderActor. Under ContosoEvents.TicketOrderActor, TicketOrderActor.cs is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image68.png "Solution Explorer window")
 
 2.  Locate the CancelOrder method (line 239).
 
@@ -406,7 +442,9 @@ In this task, you will write code to process the cancellation of an order by int
 
 In this task, you will write code to enqueue an order to the Ticket Order Stateful Service whenever and order is being processed. This Order is enqueued by the Web API and then dequeued by the Ticket Order Stateful Service for processing by the Ticket Order Actor. To accomplish this, the order will be enqueued into a reliable queue.
 
-1.  Using Solution Explorer open TicketOrderService.cs under the ContosoEvents.TicketOrderService project. ![In the Solution Explorer window, the following path is expanded: Service Fabric\\ContosoEvents.TicketOrderService. Under ContosoEvents.TicketOrderService, TicketOrderService.cs is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image69.png "Solution Explorer window")
+1.  Using Solution Explorer open TicketOrderService.cs under the ContosoEvents.TicketOrderService project.
+
+    ![In the Solution Explorer window, the following path is expanded: Service Fabric\\ContosoEvents.TicketOrderService. Under ContosoEvents.TicketOrderService, TicketOrderService.cs is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image69.png "Solution Explorer window")
 
 2.  Locate the EnqueueOrder method. (line 67)
 
@@ -479,7 +517,9 @@ In this task, you will write code that runs within the Orders Web API controller
 
 In this task, you will write code that runs within the Admin Web API controller that uses the Fabric Client to get information about all the Ticket Order Service partitions.
 
-1.  Using Solution Explorer, open AdminControllers.cs in the Controllers folder in the ContosoEvents.WebApi project. ![In the Solution Explorer window, under the Controllers folder, AdminController.cs is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image71.png "Solution Explorer window")
+1.  Using Solution Explorer, open AdminControllers.cs in the Controllers folder in the ContosoEvents.WebApi project.
+
+    ![In the Solution Explorer window, under the Controllers folder, AdminController.cs is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image71.png "Solution Explorer window")
 
 2.  Locate the GetTicketOrderPartitions method. (line 37)
 
@@ -631,27 +671,37 @@ In this task, you will complete features of the Contoso Events POC so that placi
 
 Cosmos DB settings
 
-1.  In the Azure Portal, browse to the Azure Cosmos DB account you created in Exercise 1, Task 6, and select Keys, under Settings in the left-hand menu. ![In the Azure Portal, Azure Cosmos DB account, under Settings, Keys is circled. In the right pane, under Read-write Keys, the URL, Primary Key, and their corresponding coopy buttons are circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image88.png "Azure Portal, Azure Cosmos DB account")
+1.  In the Azure Portal, browse to the Azure Cosmos DB account you created in Exercise 1, Task 6, and select Keys, under Settings in the left-hand menu.
+
+    ![In the Azure Portal, Azure Cosmos DB account, under Settings, Keys is circled. In the right pane, under Read-write Keys, the URL, Primary Key, and their corresponding coopy buttons are circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image88.png "Azure Portal, Azure Cosmos DB account")
 
 2.  Select the Copy button next to the URI value, return to the Local.1Node.xml file in Visual Studio, and paste the URI value into the value for the DataStorageEndpointUri parameter.
 
 3.  Now, on your Cosmos DB keys blade, copy the Primary Key value, return to the Local.1Node.xml file in Visual Studio, and paste the Primary Key value into the value for the DataStoragePrimaryKey parameter.
 
-4.  Back in the Azure portal, select Browse under Collections in the left-hand menu for your Cosmos DB. The database (TicketManager) and collection (Orders and Events) names are pre-set in the Local.1Node.xml file, so verify these match the collection and database names you see in the Azure portal. ![In the Azure Portal, Azure Cosmos DB account, under Settings, Keys is circled. In the right pane, under Read-write Keys, the URL, Primary Key, and their corresponding coopy buttons are circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image89.png "Azure Portal, Azure Cosmos DB account")
+4.  Back in the Azure portal, select Browse under Collections in the left-hand menu for your Cosmos DB. The database (TicketManager) and collection (Orders and Events) names are pre-set in the Local.1Node.xml file, so verify these match the collection and database names you see in the Azure portal.
+
+    ![In the Azure Portal, Azure Cosmos DB account, under Settings, Keys is circled. In the right pane, under Read-write Keys, the URL, Primary Key, and their corresponding coopy buttons are circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image89.png "Azure Portal, Azure Cosmos DB account")
 
 5.  If you used a different database name, modify the value of the DataStorageDatabaseName parameter to reflect the Cosmos DB database name.
 
 6.  If you used a different collection names for the Orders or Events collections, modify the values of the DataStorageEventsCollectionName and DataStorageOrdersCollectionName parameters to match your names.
 
-7.  Save the Local.1Node.xml file. The Cosmos DB parameters should now resemble the following: ![In the 1Node.xml file, the CosmosDB parameters display.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image90.png "1Node.xml file")
+7.  Save the Local.1Node.xml file. The Cosmos DB parameters should now resemble the following:
+
+    ![In the 1Node.xml file, the CosmosDB parameters display.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image90.png "1Node.xml file")
 
 Storage settings:
 
 1.  In the Azure Portal, browse to the Storage account you created in Exercise 1, Task 5, and select Access keys under Settings in the left-hand menu.
 
-2.  Select the copy button to the right of key1 Connection String to copy the value. ![In Azure Portal, Storage account, in the left pane, under Settings, Access keys is circled. In the right pane, under Default keys, for key1, the Connection string and its corresponding copy button are circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image91.png "Azure Portal, Storage account")
+2.  Select the copy button to the right of key1 Connection String to copy the value.
 
-3.  Return to the Local.1Node.xml file in Visual Studio, and paste the key 1 Connection String into the value for the StorageConnectionString parameter, and save Local.1Node.xml.![In the 1Node.xml file, the Key 1 Connection String displays.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image92.png "1Node.xml file")
+    ![In Azure Portal, Storage account, in the left pane, under Settings, Access keys is circled. In the right pane, under Default keys, for key1, the Connection string and its corresponding copy button are circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image91.png "Azure Portal, Storage account")
+
+3.  Return to the Local.1Node.xml file in Visual Studio, and paste the key 1 Connection String into the value for the StorageConnectionString parameter, and save Local.1Node.xml.
+
+    ![In the 1Node.xml file, the Key 1 Connection String displays.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image92.png "1Node.xml file")
 
 Test configurations:
 
@@ -659,7 +709,9 @@ Test configurations:
 
 2.  After the application is fully published, use Chrome to browse to the Swagger endpoint at <http://localhost:8082/swagger/ui/index>.
 
-3.  Select the Orders API methods, and select the POST operation for /api/orders. ![In the Swagger endpoint window, Orders is circled. Below Orders, /api/orders method is circled. While the other methods have Get buttons next to them, the /api/orders method has a Post button next to it.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image93.png "Swagger Endpoint Window")
+3.  Select the Orders API methods, and select the POST operation for /api/orders.
+
+    ![In the Swagger endpoint window, Orders is circled. Below Orders, /api/orders method is circled. While the other methods have Get buttons next to them, the /api/orders method has a Post button next to it.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image93.png "Swagger Endpoint Window")
 
 4.  POST an order to the Contoso Events application. Copy this order request JSON below into the order value box, and select Try it out.
 
@@ -789,7 +841,9 @@ You will also create a second function that will be used to generate load agains
 
     d.  Select Save.
 
-19. While still on the Integrate screen, select +New Output. ![On the Integrate Screen, under Outputs, + New Output is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image117.png "Integrate Screen")
+19. While still on the Integrate screen, select +New Output.
+
+    ![On the Integrate Screen, under Outputs, + New Output is circled.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image117.png "Integrate Screen")
 
 20. In the outputs box, locate and select Azure Cosmos DB, then select Select.
 
@@ -825,7 +879,9 @@ You will also create a second function that will be used to generate load agains
 
 25. Select all the code in that file (CTRL+A) and copy (CTRL+C) it.
 
-26. Return to your function's page in the Azure portal, and replace the code in the run.csx block with the code you just copied from Visual Studio, and select Save. The run.csx code should now look like the following. Note: The ProcessOrdersExternalization function will enable you to process another order, and see that it is saved to the Orders collection of the Cosmos DB. ![Code that was copied from Visual Studio displays in the Run.csx block.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image123.png "Azure Portal, Run.csx block")
+26. Return to your function's page in the Azure portal, and replace the code in the run.csx block with the code you just copied from Visual Studio, and select Save. The run.csx code should now look like the following. Note: The ProcessOrdersExternalization function will enable you to process another order, and see that it is saved to the Orders collection of the Cosmos DB.
+
+    ![Code that was copied from Visual Studio displays in the Run.csx block.](images/Hands-onlabstep-by-step-Microservicesarchitecture-Developereditionimages/media/image123.png "Azure Portal, Run.csx block")
 
 27. You will now create another function.
 
