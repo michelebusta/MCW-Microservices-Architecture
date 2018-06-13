@@ -1,16 +1,10 @@
-![](images/HeaderPic.png "Microsoft Cloud Workshops")
+!["Microsoft Cloud Workshops"](images/HeaderPic.png)
 
-<div class="MCWHeader1">
 Microservices architecture
-</div>
 
-<div class="MCWHeader2">
 Whiteboard design session trainer guide
-</div>
 
-<div class="MCWHeader3">
-March 2018
-</div>
+June 2018
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
 
@@ -247,7 +241,7 @@ According to the CIO, the current system topology handles the following core use
 
 ### Customer objections 
 
-1.  While we are interested in the microservices approach, we are still comparing Service Fabric with PaaS features such as App Services and SQL DB. Service Fabric seems relatively new, while App Services and SQL DB have been around for some time.
+1.  While we are interested in the microservices approach, we are still comparing Service Fabric with PaaS features such as App Services and SQL DB. How mature is Service Fabric by comparison?
 
 2.  Microservices architectures are completely new to the Contoso Events team. If we were to go forward with Service Fabric, we would like to understand what skills the team can carry forward, and how much of a learning curve exists.
 
@@ -602,7 +596,7 @@ After evaluating the benefits of Service Fabric, with the team at Microsoft, Con
 
 ## Checklist of preferred objection handling
 
-*While we are interested in the microservices approach, we are still comparing Service Fabric with PaaS features such as App Services and SQL DB. Service Fabric seems relatively new, while App Services and SQL DB have been around for some time.*
+*While we are interested in the microservices approach, we are still comparing Service Fabric with PaaS features such as App Services and SQL DB. How mature is Service Fabric by comparison?*
 
 Service Fabric has been battle tested for many years prior to becoming generally available. In fact, Service Fabric is the underlying foundation for Azure's own SQL DB and Cosmos DB services among other high traffic applications such as the very popular Halo game.
 
