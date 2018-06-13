@@ -9,9 +9,8 @@ Hands-on lab unguided
 </div>
 
 <div class="MCWHeader3">
-March 2018
+June 2018
 </div>
-
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
 
@@ -23,7 +22,7 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
-**Contents** 
+**Contents**
 
 <!-- TOC -->
 
@@ -61,7 +60,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
         - [Task 3: Interacting with an Actor from a Web API Controller](#task-3-interacting-with-an-actor-from-a-web-api-controller)
             - [Tasks to complete:](#tasks-to-complete-8)
             - [Exit criteria:](#exit-criteria-8)
-        - [Task 4: Inspecting Service partitions](#task-4-inspecting-service-partitions)
+        - [Task 4: Inspecting Service Partitions](#task-4-inspecting-service-partitions)
             - [Tasks to complete:](#tasks-to-complete-9)
             - [Exit criteria:](#exit-criteria-9)
     - [Exercise 3: Placing ticket orders](#exercise-3-placing-ticket-orders)
@@ -149,15 +148,15 @@ Contoso Events is an online service for concerts, sporting and other event ticke
 
 In this hands-on lab, you will construct an end-to-end POC for ticket ordering. You will leverage Service Fabric, API Management, Function Apps, Web Apps, and Cosmos DB.
 
-![The Event Ticket sales flowchart begins with Azure AD B2C, which points to Contoso Events Site Web App. A bi-directional arrow points between the Web App and API Manager, which in turn has a bi-direction arrow pointing between it and Web API (Stateless Service). An arrow points from there to Ticket Order Service (Stateful Service), which points to Ticket Order Actor (Processor). The Web API, Ticket Order Service, and Ticket Order Actor are all part of the Contoso Events Service Fabric App. from Ticket Order Actor, an arrow points to Order Externalization (Queue), then on to Process Order Externalization (Azure Function), and ends at Cosmos DB (Orders Collection). ](images/Hands-onlabunguided-Microservicesarchitecture-Developereditionimages/media/image2.png "Event Ticket sales flowchart")
+![The Event Ticket sales flowchart begins with Azure AD B2C, which points to Contoso Events Site Web App. A bi-directional arrow points between the Web App and API Manager, which in turn has a bi-direction arrow pointing between it and Web API (Stateless Service). An arrow points from there to Ticket Order Service (Stateful Service), which points to Ticket Order Actor (Processor). The Web API, Ticket Order Service, and Ticket Order Actor are all part of the Contoso Events Service Fabric App. from Ticket Order Actor, an arrow points to Order Externalization (Queue), then on to Process Order Externalization (Azure Function), and ends at Cosmos DB (Orders Collection). ](images/Labs/image2.png "Event Ticket sales flowchart")
 
 ## Solution architecture
 
 The following figures are intended to help you keep track of all the technologies and endpoints you are working with in this hands-on lab. The first figure is the overall architecture, indicating the Azure resources to be employed. The second figure is a more detailed picture of the key items you will want to remember about those resources as you move through the exercises.
 
-![Diagram of the preferred solution (just one of many viable options). From a high-level, Contoso Events applications will consume back-end APIs managed through API Management, authenticating users with tokens issued by Azure AD B2C. API requests will go through Azure Load Balancer, and distribute across Service Fabric nodes. Business functionality will be implemented through stateful services and actors, and Azure Functions will handle processing the queues and updating Cosmos DB.](images/Hands-onlabunguided-Microservicesarchitecture-Developereditionimages/media/image3.png "Preferred solution diagram")
+![Diagram of the preferred solution (just one of many viable options). From a high-level, Contoso Events applications will consume back-end APIs managed through API Management, authenticating users with tokens issued by Azure AD B2C. API requests will go through Azure Load Balancer, and distribute across Service Fabric nodes. Business functionality will be implemented through stateful services and actors, and Azure Functions will handle processing the queues and updating Cosmos DB.](images/Labs/image3.png "Preferred solution diagram")
 
-![This illustrationlists key items to remember, which include: Profiles, Application, Queues, TicketManager DB, Functions, APIM Endpoints, Web App, Cluster Endpoints, and Local Endpoints. At this time, we are unable to capture all of the information in the illustration. Future versions of this course should address this.](images/Hands-onlabunguided-Microservicesarchitecture-Developereditionimages/media/image4.png "Key items to remember illustration")
+![This illustration lists key items to remember, which include: Profiles, Application, Queues, TicketManager DB, Functions, APIM Endpoints, Web App, Cluster Endpoints, and Local Endpoints. At this time, we are unable to capture all of the information in the illustration. Future versions of this course should address this.](images/Labs/image4.png "Key items to remember illustration")
 
 ## Requirements
 
@@ -171,7 +170,7 @@ The following figures are intended to help you keep track of all the technologie
 
     c.  Azure Development workload enabled in Visual Studio 2017 (enabled by default on the VM)
 
-    d.  Service Fabric SDK 2.7 or later for Visual Studio 2017
+    d.  Service Fabric SDK 3.1 or later for Visual Studio 2017
 
     e.  Google Chrome browser (Swagger commands do not work in IE)
 
@@ -185,13 +184,13 @@ Contoso Events has provided a starter solution for you. They have asked you to u
 
 Because this is a "born in Azure" solution, it depends on many Azure resources. You will be guided through creating those resources before you work with the solution in earnest. The following figure illustrates the resource groups and resources you will create in this exercise.
 
-![The Starter Solution begins with a Start button, with two arrows pointing to two different Resource Groups. The first Resource group includes only the Function App. The second Resource group includes the following resources: Service Fabric Cluster, API Management, Azure AD B2C, Web App, Storage Account, and Cosmos DB.](images/Hands-onlabunguided-Microservicesarchitecture-Developereditionimages/media/image42.png "Starter Solution Resources")
+![The Starter Solution begins with a Start button, with two arrows pointing to two different Resource Groups. The first Resource group includes only the Function App. The second Resource group includes the following resources: Service Fabric Cluster, API Management, Azure AD B2C, Web App, Storage Account, and Cosmos DB.](images/Labs/image42.png "Starter Solution Resources")
 
 ### Task 1: Download and open the ContosoEventsPoC starter solution
 
 #### Tasks to complete:
 
-1.  On your Lab VM, download the starter project from <http://bit.ly/2eQprpa>. (Note: the URL is case sensitive, so you may need to copy and paste it into your browser's address bar.)
+1.  On your Lab VM, download the starter project from <http://bit.ly/2t1HhbS>. (Note: the URL is case sensitive, so you may need to copy and paste it into your browser's address bar.)
 
 2.  Unzip the contents to the folder C:\\handsonlab.
 
@@ -201,9 +200,9 @@ Because this is a "born in Azure" solution, it depends on many Azure resources. 
 
 #### Exit criteria:
 
--   You can successfully build the solution.
+-  You cannot successfully build the solution.
 
-**Note**: If you have the prerequisites on your VM, this solution should open without requesting additional software to be installed. You should also be able to compile without error, but the solution is not yet ready to run.
+> **Note**: If you have the prerequisites on your VM, this solution should open without requesting additional software to be installed. You should have some compile-time errors at this point. These are expected, and will be fixed as you proceed with the hands-on lab.
 
 ### Task 2: API Management
 
@@ -211,25 +210,25 @@ In this task, you will provision an API Management Service in the Azure portal.
 
 #### Tasks to complete:
 
-1.  Create a new API Management service with a URL like contosoeventsSUFFIX, in the same region you used previously. Use Developer pricing tier.
+1.  Create a new API Management service with a URL like 'contosoevents-SUFFIX', in the same region you used previously. Use Developer pricing tier.
 
 #### Exit criteria:
 
--   After the service is provisioned, it will be listed in the API management list in the portal. This may take up to 10-15 minutes, so move to Task 3 and return later to verify.
+-  After the service is provisioned, it will be listed in the API management list in the portal. This may take up to 10-15 minutes, so move to Task 3 and return later to verify.
 
 ### Task 3: Web App
 
-In these steps, you will provision a web app in a new App Service Plan.
+In these steps, you will provision a Web App in a new App Service Plan.
 
 #### Tasks to complete:
 
-1.  Provision a web app to host the website. Create an App Service Plan in the Resource Group and region you used previously. Name the Web App something like "contosoeventsweb-SUFFIX".
+1.  Provision a web app to host the website. Create an App Service Plan in the Resource Group and region you used previously. Name the Web App something like 'contosoeventsweb-SUFFIX'.
 
 2.  Select pricing tier S1 Standard.
 
 #### Exit criteria:
 
--   You can navigate to your new Web App at the URL you noted earlier based on your Web App name such as <https://contosoeventsweb-SUFFIX.azurewebsites.net>. You should see an empty website.
+-  You can navigate to your new Web App at the URL you noted earlier based on your Web App name such as <https://contosoeventsweb-SUFFIX.azurewebsites.net>. You should see an empty website.
 
 ### Task 4: Function App
 
@@ -237,13 +236,13 @@ In this task, you will provision a Function App using a Consumption Plan. By usi
 
 #### Tasks to complete:
 
-1.  Provision a Function App to host the functions in the Visual Studio solution, in a Dynamic App Service Plan. Create a new Resource Group with a name similar to your main Resource Group such as "contosoeventsfn-SUFFIX".
+1.  Provision a Function App to host the functions in the Visual Studio solution, in a Consumption Plan. Create a new Resource Group with a name similar to your main Resource Group such as 'contosoeventsfn-SUFFIX'.
 
-2.  Name the App something like "contosoeventsfn-SUFFIX".
+2.  Name the App something like 'contosoeventsfn-SUFFIX'.
 
 #### Exit criteria:
 
--   When the provisioning completes, your Web App and Function App are listed in the Azure Portal.
+-  When the provisioning completes, your Web App and Function App are listed in the Azure Portal.
 
 ### Task 5: Storage account
 
@@ -257,7 +256,7 @@ In this section, you will create a Storage account for the application to create
 
 #### Exit criteria:
 
--   After provisioning is complete, the Storage account will be listed in the Azure Portal.
+-  After provisioning is complete, the Storage account will be listed in the Azure Portal.
 
 ### Task 6: Cosmos DB
 
@@ -273,19 +272,19 @@ In this section, you will provision a Cosmos DB account, a Cosmos DB Database an
 
 #### Exit criteria:
 
--   You will be able to see the two collections in the new database.
+-  You will be able to see the two collections in the new database.
 
-## Exercise 2: Implementing the Service Fabric solution 
+## Exercise 2: Implementing the Service Fabric solution
 
 Duration: 60 minutes
 
-The agreed-upon design with Contoso Events involves queuing ticket orders, and executing them asynchronously. A stateless Web API service receives the request, and queues it to a stateful service. An actor processes the request, and persists the order in its state.
+The agreed upon design with Contoso Events involves queuing ticket orders, and executing them asynchronously. A stateless Web API service receives the request, and queues it to a stateful service. An actor processes the request, and persists the order in its state.
 
 The design also calls for saving the state of the ticket order to a Cosmos DB collection for ad hoc queries. This exercise will guide you through adding configurations that will light up the actor code that externalizes its state to a storage queue. In addition, you will set up the Function App to read from the queue, and persist the order to the Orders collection of the Cosmos DB instance you created.
 
-Note: The code to write to the storage queue is already in place within the actor, so setting up configuration keys is the only requirement to lighting up that feature.
+> Note: The code to write to the storage queue is already in place within the actor, so setting up configuration keys is the only requirement to lighting up that feature.
 
-![The Ticket Ordering flowchart starts with Web API (Stateless Service). An arrow points to Ticket Order Service (Stateful Service), then to Ticket Order Actor (Processor). These three items make up the Contoso Events Service Fabric App. From Ticket Order Actor, an arrow points to Order Externalization (Queue). The next step is Process Order Externalization (Azure Function), and ends with Cosmos DB (Orders Collection).](images/Hands-onlabunguided-Microservicesarchitecture-Developereditionimages/media/image43.png "Ticket Ordering flowchart")
+![The Ticket Ordering flowchart starts with Web API (Stateless Service). An arrow points to Ticket Order Service (Stateful Service), then to Ticket Order Actor (Processor). These three items make up the Contoso Events Service Fabric App. From Ticket Order Actor, an arrow points to Order Externalization (Queue). The next step is Process Order Externalization (Azure Function), and ends with Cosmos DB (Orders Collection).](images/Labs/image67.png "Ticket Ordering flowchart")
 
 ### Task 1: Interacting with an Actor's State
 
@@ -303,7 +302,7 @@ In this task, you will write code to process the cancellation of an order by int
 
 #### Exit criteria:
 
--   All TODOs in TicketOrderActor.cs should be addressed.
+-  All TODOs in TicketOrderActor.cs should be addressed.
 
 ### Task 2: Interacting with a Stateful Service
 
@@ -321,7 +320,7 @@ In this task, you will write code to enqueue an order to the Ticket Order Statef
 
 #### Exit criteria:
 
--   All TODOs in TicketOrderService.cs should be addressed
+-  All TODOs in TicketOrderService.cs should be addressed
 
 ### Task 3: Interacting with an Actor from a Web API Controller
 
@@ -339,9 +338,9 @@ In this task, you will write code that runs within the Orders Web API controller
 
 #### Exit criteria:
 
--   All TODOs in TicketOrderService.cs controller should be addressed
+-  All TODOs in TicketOrderService.cs controller should be addressed
 
-### Task 4: Inspecting Service partitions
+### Task 4: Inspecting Service Partitions
 
 In this task, you will write code that runs within the Admin Web API controller that uses the Fabric Client to get information about all the Ticket Order Service partitions.
 
@@ -357,9 +356,9 @@ In this task, you will write code that runs within the Admin Web API controller 
 
 #### Exit criteria:
 
--   All TODOs in AdminControllers.cs should be addressed
+-  All TODOs in AdminControllers.cs should be addressed
 
-## Exercise 3: Placing ticket orders 
+## Exercise 3: Placing ticket orders
 
 Duration: 30 minutes
 
@@ -369,7 +368,7 @@ In this exercise, you will test that your completed solution works by running lo
 
 The purpose of this task is to make sure that the source code compiles, and that you can publish to a local cluster. To make sure that the app is running flawlessly, you will run some API tests and access the Service Fabric explorer.
 
-**Note**: Not all features are in place, but you will be able to see that the application can run.
+Note: Not all features are in place, but you will be able to see that the application can run.
 
 #### Tasks to complete:
 
@@ -379,7 +378,7 @@ The purpose of this task is to make sure that the source code compiles, and that
 
 #### Exit criteria:
 
--   In Visual Studio view the publish status. After it shows that it succeeded, the application is ready to be used.
+-  In Visual Studio view the publish status. After it shows that it succeeded, the application is ready to be used.
 
 ### Task 2: Test the application
 
@@ -387,15 +386,13 @@ The Service Fabric Application includes a front-end Web API as the public-facing
 
 #### Tasks to complete:
 
-1.  Browse to the Swagger endpoint for the Web API at:
+1.  Browse to the Swagger endpoint for the Web API at: <http://localhost:8082/swagger/ui/index>
 
-2.  <http://localhost:8082/swagger/ui/index>
-
-3.  Select the Admin API and select the method /api/admin/partitions. This returns the number of tickets queued across all partitions.
+2.  Select the Admin API and select the method /api/admin/partitions. This returns the number of tickets queued across all partitions.
 
 #### Exit criteria:
 
--   If you were able to view the Swagger definition and select the partitions method with a successful response, your environment is in a good state to continue.
+-  If you were able to view the Swagger definition and select the partitions method with a successful response, your environment is in a good state to continue.
 
 ### Task 3: Service Fabric Explorer
 
@@ -409,7 +406,7 @@ In this task, you will browse to the Service Fabric Explorer, and view the local
 
 #### Exit criteria:
 
--   If you are able to access the Service Fabric Explorer, your environment is in a good state to continue.
+-  If you are able to access the Service Fabric Explorer, your environment is in a good state to continue.
 
 ### Task 4: Set up the Ticket Order Sync queue
 
@@ -419,11 +416,11 @@ In this task, you will complete features of the Contoso Events POC so that placi
 
 1.  Update Local.xml in the ApplicationParameters folder with your own configuration parameters for the following items:
 
-```
-    <Parameter Name="DataStorageEndpointUri" Value="" />
-    <Parameter Name="DataStoragePrimaryKey" Value="" />
-    <Parameter Name="StorageConnectionString" Value="" />
-```
+    ```
+        <Parameter Name="DataStorageEndpointUri" Value="" />
+        <Parameter Name="DataStoragePrimaryKey" Value="" />
+        <Parameter Name="StorageConnectionString" Value="" />
+    ```
 
 2.  Set DataStorageEndpointUri to the Cosmos DB endpoint Uri.
 
@@ -431,27 +428,27 @@ In this task, you will complete features of the Contoso Events POC so that placi
 
 4.  Set StorageConnectionString to the connection for your storage account in this format:
 
-```
-    DefaultEndpointsProtocol=https;AccountName=ACCOUNTNAME;AccountKey=KEY1
-```
+    ```
+        DefaultEndpointsProtocol=https;AccountName=ACCOUNTNAME;AccountKey=KEY1
+    ```
 
 5.  Rebuild and publish the application to the local cluster.
 
 6.  Browse to the local Swagger endpoint and test the POST /api/orders method by posting the following JSON formatted order payload:
 
-```
-    {
-    "UserName": "johnsmith",
-    "Email": "john.smith@gmail.com",
-    "EventId": "EVENT1-ID-00001",
-    "PaymentProcessorTokenId": "YYYTT6565661652612516125",
-    "Tickets": 3
-    }
-```
+    ```
+        {
+        "UserName": "johnsmith",
+        "Email": "john.smith@gmail.com",
+        "EventId": "EVENT1-ID-00001",
+        "PaymentProcessorTokenId": "YYYTT6565661652612516125",
+        "Tickets": 3
+        }
+    ```
 
 #### Exit criteria:
 
--   In Visual Studio, open the Cloud Explorer, navigate to the externalization queue, and verify that the new order is in the queue.
+-  In Visual Studio, open the Cloud Explorer, navigate to the externalization queue, and verify that the new order is in the queue.
 
 ### Task 5: Set up the functions
 
@@ -459,7 +456,7 @@ In this task, you will create a function that will be triggered by the externali
 
 You will also create a second function that will be used to generate load against the system at runtime. Overall, the ContosoEvents app has the following queue and function architecture. This should help you visualize how the queues and functions are related.
 
-![The ContosoEvents app architecture has two columns - Cosmos DB (Data Store), and Contoso Events (Web API). It also has three rows - Azure Functions, Azure Storage Queues, and Queue Sources. For Cosmos DB, its order of flow begins with Ticket Order Actor, Queue Source. An arrow then points up from Ticket Order Actor to Order Externalization (Its Azure Storage Queue), which then points up to Process order externalization (its Azure Function), which points to its endpoint, Cosmos DB Data Store. For Contoso Events, its order of flow begins with Service Fabric App, its Queue Source. An arrow then points up from there to Order Simulation (Its Azure Storage Queue), which then points up to Process order simulation (its Azure Function), which points to its endpoint, Contoso Events (Web API). its Azure Function is to process order simulization, Its Azure Storage Queue is Order Simulation, and its Queue Source is Service Fabric App. ](images/Hands-onlabunguided-Microservicesarchitecture-Developereditionimages/media/image44.png "ContosoEvents app architecture")
+![The ContosoEvents app architecture has two columns - Cosmos DB (Data Store), and Contoso Events (Web API). It also has three rows - Azure Functions, Azure Storage Queues, and Queue Sources. For Cosmos DB, its order of flow begins with Ticket Order Actor, Queue Source. An arrow then points up from Ticket Order Actor to Order Externalization (Its Azure Storage Queue), which then points up to Process order externalization (its Azure Function), which points to its endpoint, Cosmos DB Data Store. For Contoso Events, its order of flow begins with Service Fabric App, its Queue Source. An arrow then points up from there to Order Simulation (Its Azure Storage Queue), which then points up to Process order simulation (its Azure Function), which points to its endpoint, Contoso Events (Web API). its Azure Function is to process order simulization, Its Azure Storage Queue is Order Simulation, and its Queue Source is Service Fabric App. ](images/Labs/image101.png "ContosoEvents app architecture")
 
 #### Tasks to complete:
 
@@ -481,9 +478,9 @@ You will also create a second function that will be used to generate load agains
 
 #### Exit criteria:
 
--   If each function successfully compiled as you went through these steps, you are ready to proceed to the next exercise.
+-  If each function successfully compiled as you went through these steps, you are ready to proceed to the next exercise.
 
-### Task 6: Test order data sync 
+### Task 6: Test order data sync
 
 In this task, you will test the ticket order processing back-end, to validate that orders are queued and processed by the ProcessOrderExternalizations function -- ultimately saving the order to the Orders collection of the Cosmos DB instance.
 
@@ -497,7 +494,7 @@ In this task, you will test the ticket order processing back-end, to validate th
 
 #### Exit criteria:
 
--   If the Cosmos DB query returns the order id specified, the order has been fully processed through to the Cosmos DB.
+-  If the Cosmos DB query returns the order id specified, the order has been fully processed through to the Cosmos DB.
 
 ## Exercise 4: Publish the Service Fabric Application
 
@@ -519,7 +516,7 @@ In this task, you will deploy the application to a hosted Service Fabric Cluster
 
 #### Exit criteria:
 
--   From the Visual Studio output window, you can validate that the deployment has completed with success.
+-  From the Visual Studio output window, you can validate that the deployment has completed with success.
 
 ### Task 2: Test an order from the cluster
 
@@ -529,24 +526,24 @@ In this task, you will test an order against your application deployed to the ho
 
 1.  From the browser, navigate to the Swagger endpoint for the deployed application. The URL is made of:
 
-> <http://contosoeventssf-SUFFIX.eastus.cloudapp.azure.com:8082/swagger/ui/index>
+    > <http://contosoeventssf-SUFFIX.eastus.cloudapp.azure.com:8082/swagger/ui/index>
 
 2.  POST an order to the Order API /api/orders endpoint using this JSON:
 
-```
-    {
-    "UserName": "johnsmith",
-    "Email": "john.smith@gmail.com",
-    "Tag": "Manual",
-    "EventId": "EVENT1-ID-00001",
-    "PaymentProcessorTokenId": "YYYTT6565661652612516125",
-    "Tickets": 3
-    }
-```
+    ```
+        {
+        "UserName": "johnsmith",
+        "Email": "john.smith@gmail.com",
+        "Tag": "Manual",
+        "EventId": "EVENT1-ID-00001",
+        "PaymentProcessorTokenId": "YYYTT6565661652612516125",
+        "Tickets": 3
+        }
+    ```
 
 #### Exit criteria:
 
--   Verify that the order has persisted to the Orders collection. From the Azure Portal, find your Cosmos DB account that you previously created. Perform a query as you did previously to verify that the order exists in the collection.
+-  Verify that the order has persisted to the Orders collection. From the Azure Portal, find your Cosmos DB account that you previously created. Perform a query as you did previously to verify that the order exists in the collection.
 
 ## Exercise 5: API Management
 
@@ -562,15 +559,15 @@ In this task, you will import the Web API description to your API Management ser
 
 1.  From the Azure Portal, select the API Management Service that you created earlier.
 
-2.  Import the API that was deployed to the Service Fabric cluster. The URL is made of:
+2.  Import the API that was deployed to the Service Fabric cluster.
 
-3.  4.  Associate the "Unlimited" product.
+3.  Associate the "Unlimited" product.
 
-    **Note**: You would typically create a new product subscription for each environment in a scenario like this one. For example, Development, Testing, Acceptance and Production (DTAP) and issue a key for your internal application usage for each environment, managed accordingly.
+    > **Note**: You would typically create a new product subscription for each environment in a scenario like this one. For example, Development, Testing, Acceptance and Production (DTAP) and issue a key for your internal application usage for each environment, managed accordingly.
 
 #### Exit criteria:
 
--   You will see your API listed under APIs.
+-  You will see your API listed under All APIs.
 
 ### Task 2: Retrieve the user subscription key
 
@@ -584,7 +581,7 @@ In this task, you will retrieve the subscription key for the client applications
 
 #### Exit criteria:
 
--   You can view the revealed key and save it for other configuration steps.
+-  You can view the revealed key and save it for other configuration steps.
 
 ### Task 3: Configure the Function App with the API Management key
 
@@ -596,9 +593,9 @@ In this task, you will provide the API Management key in a setting for the Funct
 
 #### Exit criteria:
 
--   You will be able to issue a request from the website, and see that orders have been processed through the function -- as it will have successfully called the API and you will see results in the reports page.
+-  You will be able to issue a request from the website, and see that orders have been processed through the function -- as it will have successfully called the API and you will see results in the reports page.
 
-##  Exercise 6: Configure and publish the web application
+## Exercise 6: Configure and publish the web application
 
 Duration: 15 minutes
 
@@ -618,13 +615,13 @@ In this task, you will update configuration settings to communicate with the API
 
 #### Exit criteria:
 
--   You should have values for the API Management app settings.
+-  You should have values for the API Management app settings.
 
 ### Task 2: Running the web app and creating an order
 
 In this task, you will test the web application calls to API Management by creating an order through the UI.
 
-![The Contoso Events website displays, with information about the Seattle Rock and Rollers concert tickets. At the bottom of the page is the Order tickets now button.](images/Hands-onlabunguided-Microservicesarchitecture-Developereditionimages/media/image45.png "Contoso Events website")
+![The Contoso Events website displays, with information about the Seattle Rock and Rollers concert tickets. At the bottom of the page is the Order tickets now button.](images/Labs/image158.png "Contoso Events website")
 
 #### Tasks to complete:
 
@@ -632,9 +629,9 @@ In this task, you will test the web application calls to API Management by creat
 
 2.  Place an order from the website, filling in the missing billing fields.
 
-#### Exit criteria: 
+#### Exit criteria:
 
--   Once the order is queued for processing, you will be redirected to a results page indicating Success and showing you your order id that was queued as confirmation.
+-  Once the order is queued for processing, you will be redirected to a results page indicating Success and showing you your order id that was queued as confirmation.
 
 ### Task 3: Publish the web app
 
@@ -644,11 +641,11 @@ In this task, you will publish the web application to Azure.
 
 1.  Publish the application to the Azure Web App you created previously named something like 'contosoeventsweb-SUFFIX'.
 
-#### Exit criteria: 
+#### Exit criteria:
 
--   When publishing is complete, your browser will launch and navigate to the deployed Web app home page. You can optionally submit another order to validate functionality works as in Task 2.
+-  When publishing is complete, your browser will launch and navigate to the deployed Web app home page. You can optionally submit another order to validate functionality works as in Task 2.
 
-## Exercise 7: Upgrading 
+## Exercise 7: Upgrading
 
 Duration: 30 minutes
 
@@ -666,11 +663,11 @@ In Service Fabric, deployments can be either regular or upgrade. A regular deplo
 
 The following figure illustrates the deployment hierarchy:
 
-![The Deployment hierarchy diagram starts on the left with Deployment, which has two lines leading to Regular (Replaces,) and Upgrade (Preserves). Upgrade has two lines leading to Control, and Modes. Control has two lines to Health Check Policies, and Upgrade Parameters. Upgrade Parameters has two two lines to Healthy Check Retry Timeout, and Others. From Upgrade, as previously stated, the second line leads to Modes. Modes then has three lines to Monitored, which automates the upgrade and health check; Unmonitored Auto, which Automates the upgrade but skips the health check; and Unmonitored Manual, which manually upgrades each upgrade domain.](images/Hands-onlabunguided-Microservicesarchitecture-Developereditionimages/media/image46.png "Deployment hierarchy diagram")
+![The Deployment hierarchy diagram starts on the left with Deployment, which has two lines leading to Regular (Replaces,) and Upgrade (Preserves). Upgrade has two lines leading to Control, and Modes. Control has two lines to Health Check Policies, and Upgrade Parameters. Upgrade Parameters has two two lines to Healthy Check Retry Timeout, and Others. From Upgrade, as previously stated, the second line leads to Modes. Modes then has three lines to Monitored, which automates the upgrade and health check; Unmonitored Auto, which Automates the upgrade but skips the health check; and Unmonitored Manual, which manually upgrades each upgrade domain.](images/Labs/image166.png "Deployment hierarchy diagram")
 
 If you set the upgrade mode to Monitored, Service Fabric will be in full control of the upgrade process. There is a configurable time to wait after the upgrade has finished before Service Fabric evaluates the health of the application. This value defaults to 600 seconds.
 
-### Task 2: Update an actor state 
+### Task 2: Update an actor state
 
 Currently, the TicketOrderActor does not have a status property to make it easier to check on the actor order status quickly. In this task, you will modify the Ticket Order State model to add a new status property.
 
@@ -680,7 +677,7 @@ Currently, the TicketOrderActor does not have a status property to make it easie
 
 #### Exit criteria:
 
--   After making this change, compile the solution and verify that there are no errors.
+-  After making this change, compile the solution and verify that there are no errors.
 
 ### Task 3: Perform a smooth upgrade
 
@@ -700,7 +697,7 @@ In this task, you will configure settings for the Service Fabric application to 
 
 #### Exit criteria:
 
--   When the upgrade is complete, from Service Fabric Explorer observe the new application version number.
+-  When the upgrade is complete, from Service Fabric Explorer observe the new application version number.
 
 ### Task 4: Submit a new order
 
@@ -710,25 +707,25 @@ Now that the upgrade is completed successfully, you will submit a new order, and
 
 1.  From the Swagger endpoint of the API Management instance, submit a new order such as this:
 
-```
-    {
-    "userName": "testupgrade",
-    "email": "test.upgrade@gmail.com",
-    "eventId": "EVENT1-ID-00001",
-    "paymentProcessorTokenId": "ggashwh565-uiewuu87-ujdsk",
-    "tickets": 3
-    }
-```
+    ```
+        {
+        "userName": "testupgrade",
+        "email": "test.upgrade@gmail.com",
+        "eventId": "EVENT1-ID-00001",
+        "paymentProcessorTokenId": "ggashwh565-uiewuu87-ujdsk",
+        "tickets": 3
+        }
+    ```
 
 #### Exit criteria:
 
--   Navigate to the Cosmos DB query explorer and create a query using this order id to see the new extended state actually persisted to the database.
+-  Navigate to the Cosmos DB query explorer and create a query using this order id to see the new extended state actually persisted to the database.
 
 ## After the hands-on lab
 
 Duration: 10 minutes
 
-In this exercise, attendees will deprovision any Azure resources that were created in support of the lab. You should follow all steps provided after attending the hands-on lab.
+In this exercise, attendees will deprovision any Azure resources that were created in support of the lab. You should follow all steps provided after attending the Hands-on lab.
 
 #### Tasks to complete:
 
@@ -736,5 +733,4 @@ In this exercise, attendees will deprovision any Azure resources that were creat
 
 #### Exit criteria:
 
--   After all the deletion tasks are complete, the resources will no longer be listed in the Azure portal or the Management portal. This may take about 10 minutes. You can optionally wait to see a confirmation. Otherwise, you are done!
-
+-  After all the deletion tasks are complete, the resources will no longer be listed in the Azure portal or the Management portal. This may take about 10 minutes. You can optionally wait to see a confirmation. Otherwise, you are done!
