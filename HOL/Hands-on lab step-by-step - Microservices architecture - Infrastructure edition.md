@@ -210,7 +210,7 @@ In this task, you will provision an API Management Service in the Azure portal.
 
 ### Task 3: Azure Active Directory B2C
 
-In this section, you will provision an Azure Active Directory B2C tenant. You will use this if you do Bonus Exercise 10, so it is best to set it up in advance to avoid having to wait for provisioning.
+In this section, you will provision an Azure Active Directory B2C tenant. You will use this if you do BONUS Exercise 10, so it is best to set it up in advance to avoid having to wait for provisioning.
 
 1.  In the Azure portal, select +New, and enter "Azure Active Directory" into the Search the Marketplace box, then select Azure Active Directory B2C from the results.
 
