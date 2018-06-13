@@ -26,7 +26,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [Microservices architecture -- infrastructure edition hands-on lab step-by-step](#microservices-architecture---infrastructure-edition-hands-on-lab-step-by-step)
+- [Microservices architecture -- infrastructure edition hands-on lab step-by-step](#microservices-architecture----infrastructure-edition-hands-on-lab-step-by-step)
     - [Abstract and learning objectives](#abstract-and-learning-objectives)
     - [Overview](#overview)
     - [Solution architecture](#solution-architecture)
@@ -35,8 +35,8 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
         - [Task 1: Download and open the ContosoEventsPoC starter solution](#task-1-download-and-open-the-contosoeventspoc-starter-solution)
         - [Task 2: API Management](#task-2-api-management)
         - [Task 3: Azure Active Directory B2C](#task-3-azure-active-directory-b2c)
-        - [Task 4: Web app](#task-4-web-app)
-        - [Task 5: Function app](#task-5-function-app)
+        - [Task 4: Web App](#task-4-web-app)
+        - [Task 5: Function App](#task-5-function-app)
         - [Task 6: Storage account](#task-6-storage-account)
         - [Task 7: Cosmos DB](#task-7-cosmos-db)
     - [Exercise 2: Placing ticket orders](#exercise-2-placing-ticket-orders)
@@ -77,7 +77,6 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [BONUS Exercise 10: Secure the web application](#bonus-exercise-10-secure-the-web-application)
         - [Task 1: Configure the Azure Active Directory B2C](#task-1-configure-the-azure-active-directory-b2c)
         - [Task 2: Configure the web app Settings](#task-2-configure-the-web-app-settings)
-        - [Azure Active Directory B2C:](#azure-active-directory-b2c)
         - [Task 3: Add security features to the web application](#task-3-add-security-features-to-the-web-application)
         - [Task 4: Running the web app and signing in](#task-4-running-the-web-app-and-signing-in)
     - [After the hands-on lab](#after-the-hands-on-lab)
@@ -1297,7 +1296,7 @@ Now that the upgrade is completed successfully, you will submit a new order, and
 
     ![In the Azure Cosmos DB account, on the top menu, the New SQL Query button is circled. In the left column, under Collections,TicketManager is expanded, and Orders is circled. In the right column, on the Query 1 tab, in the Query 1 field, an ID in red is circled. In the Results pane at the bottom, the same order ID is circled. The Execute Query button is circled as well. ](images/Labs/image177.png "Azure Cosmos DB account")
 
-## Exercise 7: Rollback## Exercise 7: Rollback
+## Exercise 7: Rollback
 
 Duration: 30 minutes
 
